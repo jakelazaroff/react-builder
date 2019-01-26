@@ -6,7 +6,7 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 module.exports = {
   mode: "development",
-  entry: ["webpack-hot-middleware/client", "./src/index.tsx"],
+  entry: ["webpack-hot-middleware/client", "./client.js"],
   resolve: {
     modules: [
       path.resolve(__dirname, "src"),
@@ -17,8 +17,18 @@ module.exports = {
   module: {
     rules: [
       {
+        enforce: "pre",
+        test: /\.tsx?$/,
+        exclude: /node_modules/,
+        loader: ["thread-loader", "eslint-loader"]
+      },
+      {
         test: /\.tsx?$/,
         use: "babel-loader"
+      },
+      {
+        test: /\.svg$/,
+        use: ["@svgr/webpack"]
       }
     ]
   },
@@ -27,6 +37,8 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: path.resolve(__dirname, "public", "index.html")
     }),
-    new ForkTsCheckerWebpackPlugin()
+    new ForkTsCheckerWebpackPlugin({
+      useTypescriptIncrementalApi: true
+    })
   ]
 };
