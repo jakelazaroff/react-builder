@@ -8,6 +8,7 @@ const APP_ROOT = process.cwd();
 
 module.exports = {
   mode: "development",
+  devtool: "eval",
   entry: [
     "webpack-hot-middleware/client",
     path.resolve(__dirname, "client.js")
