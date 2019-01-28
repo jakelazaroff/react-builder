@@ -1,6 +1,6 @@
 "use strict";
 
-require("./src");
+require("index");
 if (module.hot) {
   module.hot.accept();
 }
