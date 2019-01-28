@@ -10,4 +10,6 @@ const app = express();
 app.use(middleware(compiler, {}));
 app.use(hot(compiler));
 
+app.use("/assets", express.static("public"));
+
 app.listen(3000);

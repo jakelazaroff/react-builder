@@ -24,7 +24,12 @@ module.exports = {
       },
       {
         test: /\.tsx?$/,
-        use: "babel-loader"
+        use: {
+          loader: "babel-loader",
+          options: {
+            cacheDirectory: true
+          }
+        }
       },
       {
         test: /\.svg$/,
