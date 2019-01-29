@@ -58,14 +58,24 @@ module.exports = function(name) {
   );
 
   console.log("Installing development dependencies…");
-  cp.spawnSync("yarn", ["add", "--dev", ...DEV_DEPENDENCIES], {
+  const addDev = cp.spawnSync("yarn", ["add", "--dev", ...DEV_DEPENDENCIES], {
     cwd: APP_ROOT
   });
 
+  if (addDev.status !== 0) {
+    console.error(addDev.stderr.toString(), addDev.stdout.toString());
+    return;
+  }
+
   console.log("Installing production dependencies…");
-  cp.spawnSync("yarn", ["add", ...DEPENDENCIES], {
+  const addProd = cp.spawnSync("yarn", ["add", ...DEPENDENCIES], {
     cwd: APP_ROOT
   });
+
+  if (addProd.status !== 0) {
+    console.error(addProd.stderr.toString(), addProd.stdout.toString());
+    return;
+  }
 
   console.log("Copying example project…");
   copyDir(path.join(TEMPLATES, "src"), path.join(APP_ROOT));
