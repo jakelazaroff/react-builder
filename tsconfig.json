@@ -3,7 +3,7 @@
     "target": "es5",
     "module": "es6",
     "moduleResolution": "node",
-    "lib": ["esnext", "dom"],
+    "lib": ["esnext", "dom", "webworker", "scripthost"],
     "jsx": "preserve",
     "skipLibCheck": true,
     "noEmit": true,

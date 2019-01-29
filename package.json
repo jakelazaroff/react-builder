@@ -25,7 +25,8 @@
     "webpack": "^4.29.0",
     "webpack-dev-middleware": "^3.5.1",
     "webpack-dev-server": "^3.1.14",
-    "webpack-hot-middleware": "^2.24.3"
+    "webpack-hot-middleware": "^2.24.3",
+    "worker-loader": "^2.0.0"
   },
   "bin": {
     "builder": "cli.js"

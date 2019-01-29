@@ -48,8 +48,8 @@ module.exports = function(name) {
   );
 
   fs.copyFileSync(
-    path.join(TEMPLATES, "assets.d.ts"),
-    path.join(APP_ROOT, "assets.d.ts")
+    path.join(TEMPLATES, "types.d.ts"),
+    path.join(APP_ROOT, "types.d.ts")
   );
 
   fs.copyFileSync(

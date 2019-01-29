@@ -13,6 +13,9 @@ module.exports = {
     "webpack-hot-middleware/client",
     path.resolve(__dirname, "client.js")
   ],
+  output: {
+    globalObject: "this"
+  },
   resolve: {
     modules: [
       path.resolve(APP_ROOT, "src"),
