@@ -28,7 +28,7 @@ module.exports = {
         enforce: "pre",
         test: /\.tsx?$/,
         exclude: /node_modules/,
-        loader: ["thread-loader", "eslint-loader"]
+        loader: "eslint-loader"
       },
       {
         test: /\.tsx?$/,
@@ -49,8 +49,24 @@ module.exports = {
         }
       },
       {
+        test: /\.(png|jpg|gif|woff2?)$/,
+        loader: "url-loader",
+        options: {
+          fallback: "file-loader",
+          limit: 10000
+        }
+      },
+      {
         test: /\.svg$/,
-        use: ["@svgr/webpack"]
+        use: [
+          {
+            loader: "@svgr/webpack",
+            options: {
+              svgo: false
+            }
+          },
+          "url-loader"
+        ]
       }
     ]
   },

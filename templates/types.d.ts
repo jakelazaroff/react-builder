@@ -3,9 +3,10 @@
 declare module "*.svg" {
   import * as React from "react";
 
-  const ReactComponent: React.SFC<React.SVGProps<SVGSVGElement>>;
+  export const ReactComponent: React.SFC<React.SVGProps<SVGSVGElement>>;
 
-  export default ReactComponent;
+  const src: string;
+  export default src;
 }
 
 declare module "worker-loader!*" {
