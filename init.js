@@ -6,7 +6,8 @@ const cp = require("child_process");
 const PACKAGE_JSON = {
   version: "0.1.0",
   scripts: {
-    start: "builder start"
+    start: "builder start",
+    build: "builder build"
   }
 };
 

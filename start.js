@@ -17,7 +17,7 @@ module.exports = function main() {
 
   const app = express();
 
-  const compiler = webpack(config);
+  const compiler = webpack(config("development"));
   app.use(middleware(compiler, {}));
   app.use(hot(compiler));
 

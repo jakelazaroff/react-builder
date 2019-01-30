@@ -8,6 +8,9 @@ function main(args) {
   } else if (command === "start") {
     const start = require("./start");
     start();
+  } else if (command === "build") {
+    const build = require("./build");
+    build();
   }
 }
 
