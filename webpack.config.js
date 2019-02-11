@@ -88,7 +88,8 @@ module.exports = env => {
       useTypescriptIncrementalApi: true
     }),
     new HtmlWebpackPlugin({
-      template: path.resolve(APP_ROOT, "public", "index.html")
+      template: path.resolve(APP_ROOT, "public", "index.html"),
+      favicon: path.resolve(APP_ROOT, "public", "favicon.ico")
     })
   ];
 
