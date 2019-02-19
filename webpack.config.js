@@ -1,15 +1,22 @@
+const fs = require("fs");
 const path = require("path");
 
 const webpack = require("webpack");
 const ForkTsCheckerWebpackPlugin = require("fork-ts-checker-webpack-plugin");
 const HardSourceWebpackPlugin = require("hard-source-webpack-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const dotenv = require("dotenv");
 
 const APP_ROOT = process.cwd();
 
 module.exports = env => {
   const mode = env === "development" ? "development" : "production";
   const devtool = env === "development" ? "eval" : "source-map";
+
+  let environment = process.env;
+  if (env === "development" && fs.existsSync(path.resolve(APP_ROOT, ".env"))) {
+    environment = dotenv.parse(fs.readFileSync(path.resolve(APP_ROOT, ".env")));
+  }
 
   const entry =
     env === "development"
@@ -84,6 +91,14 @@ module.exports = env => {
         };
 
   const plugins = [
+    new webpack.DefinePlugin(
+      Object.entries(environment)
+        .filter(([key]) => key.startsWith("REACT_APP"))
+        .reduce(
+          (memo, [key, value]) => ({ ...memo, [key]: JSON.stringify(value) }),
+          {}
+        )
+    ),
     new ForkTsCheckerWebpackPlugin({
       useTypescriptIncrementalApi: true
     }),
