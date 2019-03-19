@@ -3,6 +3,7 @@ const path = require("path");
 const url = require("url");
 
 const express = require("express");
+const history = require("connect-history-api-fallback");
 const proxy = require("http-proxy-middleware");
 const webpack = require("webpack");
 const middleware = require("webpack-dev-middleware");
@@ -16,6 +17,7 @@ module.exports = function main() {
   );
 
   const app = express();
+  app.use(history());
 
   const compiler = webpack(config("development"));
   app.use(middleware(compiler, {}));
