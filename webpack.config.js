@@ -24,7 +24,8 @@ module.exports = env => {
       : path.resolve(APP_ROOT, "src", "index.tsx");
 
   const output = {
-    globalObject: "this"
+    globalObject: "this",
+    publicPath: "/"
   };
 
   if (env === "development") {
